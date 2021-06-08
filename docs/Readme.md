@@ -1,0 +1,1 @@
+# General docs: DB, API, Architecture, Auth, Main work flow
