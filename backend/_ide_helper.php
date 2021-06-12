@@ -15312,7 +15312,38 @@
      
 }
 
-        namespace Facade\Ignition\Facades { 
+        namespace App\MHelper\Support\Facades { 
+            /**
+     * 
+     *
+     */ 
+        class ApiService {
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function success($data)
+        {
+                        /** @var \App\MHelper\ApiService $instance */
+                        return $instance->success($data);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function fail($error_msg, $error_code = -1, $error_data = '')
+        {
+                        /** @var \App\MHelper\ApiService $instance */
+                        return $instance->fail($error_msg, $error_code, $error_data);
+        }
+         
+    }
+     
+}
+
+    namespace Facade\Ignition\Facades { 
             /**
      * Class Flare.
      *
@@ -18969,6 +19000,7 @@ namespace  {
             class URL extends \Illuminate\Support\Facades\URL {}
             class Validator extends \Illuminate\Support\Facades\Validator {}
             class View extends \Illuminate\Support\Facades\View {}
+            class ApiService extends \App\MHelper\Support\Facades\ApiService {}
             class Flare extends \Facade\Ignition\Facades\Flare {}
      
 }
