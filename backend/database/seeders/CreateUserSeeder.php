@@ -17,17 +17,17 @@ class CreateUserSeeder extends Seeder
         //
         DB::table('users')->insert([
             [
-                "name" => "admin",
+                "username" => "admin",
                 "email" => "admin@wifosoft.com",
                 "password" => \Hash::make('admin')
             ],
             [
-                "name" => "daily1",
+                "username" => "daily1",
                 "email" => "daily1@wifosoft.com",
                 "password" => \Hash::make('admin')
             ],
             [
-                "name" => "daily2",
+                "username" => "daily2",
                 "email" => "daily2@wifosoft.com",
                 "password" => \Hash::make('admin')
             ],

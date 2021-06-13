@@ -15333,10 +15333,10 @@
          *
          * @static 
          */ 
-        public static function fail($error_msg, $error_code = -1, $error_data = '')
+        public static function fail($error_msg, $error_code = -1, $error_description = '')
         {
                         /** @var \App\MHelper\ApiService $instance */
-                        return $instance->fail($error_msg, $error_code, $error_data);
+                        return $instance->fail($error_msg, $error_code, $error_description);
         }
          
     }

@@ -19,15 +19,16 @@ class ApiService
         ]);
     }
 
-    public function fail( $error_msg, $error_code=-1, $error_data=""): \Illuminate\Http\JsonResponse
+    public function fail( $error_msg, $error_code=-1, $error_description=""): \Illuminate\Http\JsonResponse
     {
         return \Response::json([
             'status' => false,
-            'data' => [
-                'error_code' => $error_code,
-                'error_msg' => $error_msg,
-                'error_data' => $error_data
-            ]
+            'err' => [
+                'code' => $error_code,
+                'message' => $error_msg,
+                'description' => $error_description
+            ],
+            'data' =>[]
         ]);
     }
 }

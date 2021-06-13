@@ -1,3 +1,4 @@
+
 1. copy .env.example => .env
 Cấu hình db nếu mysql có thay đổi
 DB_CONNECTION=mysql
