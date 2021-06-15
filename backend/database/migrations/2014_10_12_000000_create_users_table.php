@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->boolean('deleted')->default(false);
             $table->integer('role')->default(0);
             $table->rememberToken();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

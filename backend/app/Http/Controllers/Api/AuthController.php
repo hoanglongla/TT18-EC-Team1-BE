@@ -8,7 +8,7 @@ use GuzzleHttp\Exception\ClientException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class LoginController extends Controller
+class AuthController extends Controller
 {
     //
 
@@ -50,6 +50,10 @@ class LoginController extends Controller
             return \ApiService::fail("Login error", -1, $res);
 
         }
+
+    }
+
+    public function registerTail(Request $request){
 
     }
 }
