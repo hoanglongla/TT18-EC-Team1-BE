@@ -43,3 +43,13 @@ php artisan passport:keys --force
 
 4. create api
 php artisan make:controller API\CustomController --api --model=CustomModel
+
+
+
+5. enum
+0 - admin, quan ly toan chuoi
+1 - quan ly dai ly
+2 - sale
+3 - nhan vien
+4 - khach hang
+

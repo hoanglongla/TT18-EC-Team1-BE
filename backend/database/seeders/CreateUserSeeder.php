@@ -19,17 +19,23 @@ class CreateUserSeeder extends Seeder
             [
                 "username" => "admin",
                 "email" => "admin@wifosoft.com",
-                "password" => \Hash::make('admin')
+                "password" => \Hash::make('admin'),
+                "role" => 0,
+                "is_customer" => false
             ],
             [
                 "username" => "daily1",
                 "email" => "daily1@wifosoft.com",
-                "password" => \Hash::make('admin')
+                "password" => \Hash::make('admin'),
+                "role" => 1,
+                "is_customer" => false
             ],
             [
                 "username" => "daily2",
                 "email" => "daily2@wifosoft.com",
-                "password" => \Hash::make('admin')
+                "password" => \Hash::make('admin'),
+                "role" => 1,
+                "is_customer" => false
             ],
         ]);
     }

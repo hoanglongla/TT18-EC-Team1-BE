@@ -6,21 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class UserInformation extends Model
+class Tail extends Model
 {
     use HasFactory, SoftDeletes;
-
-    public $table = "user_informations";
-    public $timestamps = true;
-
+    public $table = "tails";
     protected $fillable = [
-        'tail_id',
-        'fullname',
-        'company',
-        'phone',
-        'address',
-        'bio',
-        'note'
+        "name","phone", "address" ,"bio",  "district", "ward", "city" ,"country"
     ];
 
 }
