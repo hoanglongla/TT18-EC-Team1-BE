@@ -62,5 +62,11 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        //'scopes' => \Laravel\Passport\Http\Middleware\CheckScopes::class,
+        'scopes' => \App\Http\Middleware\ApiResponseErrorMiddleware::class,
+
+       // 'scope' => \Laravel\Passport\Http\Middleware\CheckForAnyScope::class,
+        'scope' =>  \App\Http\Middleware\ApiResponseErrorMiddleware::class,
+      //  'error_api_response' => \App\Http\Middleware\ApiResponseErrorMiddleware::class
     ];
 }

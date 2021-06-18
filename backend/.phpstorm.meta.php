@@ -11,6 +11,7 @@ namespace PHPSTORM_META {
     */
     override(new \Illuminate\Contracts\Container\Container, map([
         '' => '@',
+            'App\MHelper\ApiService' => \App\MHelper\ApiService::class,
             'Asm89\Stack\CorsService' => \Asm89\Stack\CorsService::class,
             'Facade\FlareClient\Flare' => \Facade\FlareClient\Flare::class,
             'Facade\IgnitionContracts\SolutionProviderRepository' => \Facade\Ignition\SolutionProviders\SolutionProviderRepository::class,
@@ -51,6 +52,8 @@ namespace PHPSTORM_META {
             'Illuminate\Testing\ParallelTesting' => \Illuminate\Testing\ParallelTesting::class,
             'Laravel\Passport\ClientRepository' => \Laravel\Passport\ClientRepository::class,
             'Lcobucci\JWT\Parser' => \Lcobucci\JWT\Token\Parser::class,
+            'League\OAuth2\Server\AuthorizationServer' => \League\OAuth2\Server\AuthorizationServer::class,
+            'League\OAuth2\Server\ResourceServer' => \League\OAuth2\Server\ResourceServer::class,
             'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
             'Psr\Http\Message\ResponseInterface' => \Nyholm\Psr7\Response::class,
             'Psr\Http\Message\ServerRequestInterface' => \Nyholm\Psr7\ServerRequest::class,
@@ -188,6 +191,7 @@ namespace PHPSTORM_META {
         ]));
     override(\Illuminate\Container\Container::makeWith(0), map([
         '' => '@',
+            'App\MHelper\ApiService' => \App\MHelper\ApiService::class,
             'Asm89\Stack\CorsService' => \Asm89\Stack\CorsService::class,
             'Facade\FlareClient\Flare' => \Facade\FlareClient\Flare::class,
             'Facade\IgnitionContracts\SolutionProviderRepository' => \Facade\Ignition\SolutionProviders\SolutionProviderRepository::class,
@@ -228,6 +232,8 @@ namespace PHPSTORM_META {
             'Illuminate\Testing\ParallelTesting' => \Illuminate\Testing\ParallelTesting::class,
             'Laravel\Passport\ClientRepository' => \Laravel\Passport\ClientRepository::class,
             'Lcobucci\JWT\Parser' => \Lcobucci\JWT\Token\Parser::class,
+            'League\OAuth2\Server\AuthorizationServer' => \League\OAuth2\Server\AuthorizationServer::class,
+            'League\OAuth2\Server\ResourceServer' => \League\OAuth2\Server\ResourceServer::class,
             'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
             'Psr\Http\Message\ResponseInterface' => \Nyholm\Psr7\Response::class,
             'Psr\Http\Message\ServerRequestInterface' => \Nyholm\Psr7\ServerRequest::class,
@@ -365,6 +371,7 @@ namespace PHPSTORM_META {
         ]));
     override(\Illuminate\Contracts\Container\Container::get(0), map([
         '' => '@',
+            'App\MHelper\ApiService' => \App\MHelper\ApiService::class,
             'Asm89\Stack\CorsService' => \Asm89\Stack\CorsService::class,
             'Facade\FlareClient\Flare' => \Facade\FlareClient\Flare::class,
             'Facade\IgnitionContracts\SolutionProviderRepository' => \Facade\Ignition\SolutionProviders\SolutionProviderRepository::class,
@@ -405,6 +412,8 @@ namespace PHPSTORM_META {
             'Illuminate\Testing\ParallelTesting' => \Illuminate\Testing\ParallelTesting::class,
             'Laravel\Passport\ClientRepository' => \Laravel\Passport\ClientRepository::class,
             'Lcobucci\JWT\Parser' => \Lcobucci\JWT\Token\Parser::class,
+            'League\OAuth2\Server\AuthorizationServer' => \League\OAuth2\Server\AuthorizationServer::class,
+            'League\OAuth2\Server\ResourceServer' => \League\OAuth2\Server\ResourceServer::class,
             'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
             'Psr\Http\Message\ResponseInterface' => \Nyholm\Psr7\Response::class,
             'Psr\Http\Message\ServerRequestInterface' => \Nyholm\Psr7\ServerRequest::class,
@@ -542,6 +551,7 @@ namespace PHPSTORM_META {
         ]));
     override(\Illuminate\Contracts\Container\Container::make(0), map([
         '' => '@',
+            'App\MHelper\ApiService' => \App\MHelper\ApiService::class,
             'Asm89\Stack\CorsService' => \Asm89\Stack\CorsService::class,
             'Facade\FlareClient\Flare' => \Facade\FlareClient\Flare::class,
             'Facade\IgnitionContracts\SolutionProviderRepository' => \Facade\Ignition\SolutionProviders\SolutionProviderRepository::class,
@@ -582,6 +592,8 @@ namespace PHPSTORM_META {
             'Illuminate\Testing\ParallelTesting' => \Illuminate\Testing\ParallelTesting::class,
             'Laravel\Passport\ClientRepository' => \Laravel\Passport\ClientRepository::class,
             'Lcobucci\JWT\Parser' => \Lcobucci\JWT\Token\Parser::class,
+            'League\OAuth2\Server\AuthorizationServer' => \League\OAuth2\Server\AuthorizationServer::class,
+            'League\OAuth2\Server\ResourceServer' => \League\OAuth2\Server\ResourceServer::class,
             'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
             'Psr\Http\Message\ResponseInterface' => \Nyholm\Psr7\Response::class,
             'Psr\Http\Message\ServerRequestInterface' => \Nyholm\Psr7\ServerRequest::class,
@@ -719,6 +731,7 @@ namespace PHPSTORM_META {
         ]));
     override(\Illuminate\Contracts\Container\Container::makeWith(0), map([
         '' => '@',
+            'App\MHelper\ApiService' => \App\MHelper\ApiService::class,
             'Asm89\Stack\CorsService' => \Asm89\Stack\CorsService::class,
             'Facade\FlareClient\Flare' => \Facade\FlareClient\Flare::class,
             'Facade\IgnitionContracts\SolutionProviderRepository' => \Facade\Ignition\SolutionProviders\SolutionProviderRepository::class,
@@ -759,6 +772,8 @@ namespace PHPSTORM_META {
             'Illuminate\Testing\ParallelTesting' => \Illuminate\Testing\ParallelTesting::class,
             'Laravel\Passport\ClientRepository' => \Laravel\Passport\ClientRepository::class,
             'Lcobucci\JWT\Parser' => \Lcobucci\JWT\Token\Parser::class,
+            'League\OAuth2\Server\AuthorizationServer' => \League\OAuth2\Server\AuthorizationServer::class,
+            'League\OAuth2\Server\ResourceServer' => \League\OAuth2\Server\ResourceServer::class,
             'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
             'Psr\Http\Message\ResponseInterface' => \Nyholm\Psr7\Response::class,
             'Psr\Http\Message\ServerRequestInterface' => \Nyholm\Psr7\ServerRequest::class,
@@ -896,6 +911,7 @@ namespace PHPSTORM_META {
         ]));
     override(\App::get(0), map([
         '' => '@',
+            'App\MHelper\ApiService' => \App\MHelper\ApiService::class,
             'Asm89\Stack\CorsService' => \Asm89\Stack\CorsService::class,
             'Facade\FlareClient\Flare' => \Facade\FlareClient\Flare::class,
             'Facade\IgnitionContracts\SolutionProviderRepository' => \Facade\Ignition\SolutionProviders\SolutionProviderRepository::class,
@@ -936,6 +952,8 @@ namespace PHPSTORM_META {
             'Illuminate\Testing\ParallelTesting' => \Illuminate\Testing\ParallelTesting::class,
             'Laravel\Passport\ClientRepository' => \Laravel\Passport\ClientRepository::class,
             'Lcobucci\JWT\Parser' => \Lcobucci\JWT\Token\Parser::class,
+            'League\OAuth2\Server\AuthorizationServer' => \League\OAuth2\Server\AuthorizationServer::class,
+            'League\OAuth2\Server\ResourceServer' => \League\OAuth2\Server\ResourceServer::class,
             'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
             'Psr\Http\Message\ResponseInterface' => \Nyholm\Psr7\Response::class,
             'Psr\Http\Message\ServerRequestInterface' => \Nyholm\Psr7\ServerRequest::class,
@@ -1073,6 +1091,7 @@ namespace PHPSTORM_META {
         ]));
     override(\App::make(0), map([
         '' => '@',
+            'App\MHelper\ApiService' => \App\MHelper\ApiService::class,
             'Asm89\Stack\CorsService' => \Asm89\Stack\CorsService::class,
             'Facade\FlareClient\Flare' => \Facade\FlareClient\Flare::class,
             'Facade\IgnitionContracts\SolutionProviderRepository' => \Facade\Ignition\SolutionProviders\SolutionProviderRepository::class,
@@ -1113,6 +1132,8 @@ namespace PHPSTORM_META {
             'Illuminate\Testing\ParallelTesting' => \Illuminate\Testing\ParallelTesting::class,
             'Laravel\Passport\ClientRepository' => \Laravel\Passport\ClientRepository::class,
             'Lcobucci\JWT\Parser' => \Lcobucci\JWT\Token\Parser::class,
+            'League\OAuth2\Server\AuthorizationServer' => \League\OAuth2\Server\AuthorizationServer::class,
+            'League\OAuth2\Server\ResourceServer' => \League\OAuth2\Server\ResourceServer::class,
             'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
             'Psr\Http\Message\ResponseInterface' => \Nyholm\Psr7\Response::class,
             'Psr\Http\Message\ServerRequestInterface' => \Nyholm\Psr7\ServerRequest::class,
@@ -1250,6 +1271,7 @@ namespace PHPSTORM_META {
         ]));
     override(\App::makeWith(0), map([
         '' => '@',
+            'App\MHelper\ApiService' => \App\MHelper\ApiService::class,
             'Asm89\Stack\CorsService' => \Asm89\Stack\CorsService::class,
             'Facade\FlareClient\Flare' => \Facade\FlareClient\Flare::class,
             'Facade\IgnitionContracts\SolutionProviderRepository' => \Facade\Ignition\SolutionProviders\SolutionProviderRepository::class,
@@ -1290,6 +1312,8 @@ namespace PHPSTORM_META {
             'Illuminate\Testing\ParallelTesting' => \Illuminate\Testing\ParallelTesting::class,
             'Laravel\Passport\ClientRepository' => \Laravel\Passport\ClientRepository::class,
             'Lcobucci\JWT\Parser' => \Lcobucci\JWT\Token\Parser::class,
+            'League\OAuth2\Server\AuthorizationServer' => \League\OAuth2\Server\AuthorizationServer::class,
+            'League\OAuth2\Server\ResourceServer' => \League\OAuth2\Server\ResourceServer::class,
             'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
             'Psr\Http\Message\ResponseInterface' => \Nyholm\Psr7\Response::class,
             'Psr\Http\Message\ServerRequestInterface' => \Nyholm\Psr7\ServerRequest::class,
@@ -1427,6 +1451,7 @@ namespace PHPSTORM_META {
         ]));
     override(\app(0), map([
         '' => '@',
+            'App\MHelper\ApiService' => \App\MHelper\ApiService::class,
             'Asm89\Stack\CorsService' => \Asm89\Stack\CorsService::class,
             'Facade\FlareClient\Flare' => \Facade\FlareClient\Flare::class,
             'Facade\IgnitionContracts\SolutionProviderRepository' => \Facade\Ignition\SolutionProviders\SolutionProviderRepository::class,
@@ -1467,6 +1492,8 @@ namespace PHPSTORM_META {
             'Illuminate\Testing\ParallelTesting' => \Illuminate\Testing\ParallelTesting::class,
             'Laravel\Passport\ClientRepository' => \Laravel\Passport\ClientRepository::class,
             'Lcobucci\JWT\Parser' => \Lcobucci\JWT\Token\Parser::class,
+            'League\OAuth2\Server\AuthorizationServer' => \League\OAuth2\Server\AuthorizationServer::class,
+            'League\OAuth2\Server\ResourceServer' => \League\OAuth2\Server\ResourceServer::class,
             'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
             'Psr\Http\Message\ResponseInterface' => \Nyholm\Psr7\Response::class,
             'Psr\Http\Message\ServerRequestInterface' => \Nyholm\Psr7\ServerRequest::class,
@@ -1604,6 +1631,7 @@ namespace PHPSTORM_META {
         ]));
     override(\resolve(0), map([
         '' => '@',
+            'App\MHelper\ApiService' => \App\MHelper\ApiService::class,
             'Asm89\Stack\CorsService' => \Asm89\Stack\CorsService::class,
             'Facade\FlareClient\Flare' => \Facade\FlareClient\Flare::class,
             'Facade\IgnitionContracts\SolutionProviderRepository' => \Facade\Ignition\SolutionProviders\SolutionProviderRepository::class,
@@ -1644,6 +1672,8 @@ namespace PHPSTORM_META {
             'Illuminate\Testing\ParallelTesting' => \Illuminate\Testing\ParallelTesting::class,
             'Laravel\Passport\ClientRepository' => \Laravel\Passport\ClientRepository::class,
             'Lcobucci\JWT\Parser' => \Lcobucci\JWT\Token\Parser::class,
+            'League\OAuth2\Server\AuthorizationServer' => \League\OAuth2\Server\AuthorizationServer::class,
+            'League\OAuth2\Server\ResourceServer' => \League\OAuth2\Server\ResourceServer::class,
             'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
             'Psr\Http\Message\ResponseInterface' => \Nyholm\Psr7\Response::class,
             'Psr\Http\Message\ServerRequestInterface' => \Nyholm\Psr7\ServerRequest::class,
@@ -1781,6 +1811,7 @@ namespace PHPSTORM_META {
         ]));
     override(\Psr\Container\ContainerInterface::get(0), map([
         '' => '@',
+            'App\MHelper\ApiService' => \App\MHelper\ApiService::class,
             'Asm89\Stack\CorsService' => \Asm89\Stack\CorsService::class,
             'Facade\FlareClient\Flare' => \Facade\FlareClient\Flare::class,
             'Facade\IgnitionContracts\SolutionProviderRepository' => \Facade\Ignition\SolutionProviders\SolutionProviderRepository::class,
@@ -1821,6 +1852,8 @@ namespace PHPSTORM_META {
             'Illuminate\Testing\ParallelTesting' => \Illuminate\Testing\ParallelTesting::class,
             'Laravel\Passport\ClientRepository' => \Laravel\Passport\ClientRepository::class,
             'Lcobucci\JWT\Parser' => \Lcobucci\JWT\Token\Parser::class,
+            'League\OAuth2\Server\AuthorizationServer' => \League\OAuth2\Server\AuthorizationServer::class,
+            'League\OAuth2\Server\ResourceServer' => \League\OAuth2\Server\ResourceServer::class,
             'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
             'Psr\Http\Message\ResponseInterface' => \Nyholm\Psr7\Response::class,
             'Psr\Http\Message\ServerRequestInterface' => \Nyholm\Psr7\ServerRequest::class,

@@ -14,7 +14,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+        'App\Models\Model' => 'App\Policies\ModelPolicy',
     ];
 
     /**
@@ -25,9 +25,16 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
+        Passport::tokensCan([
+            "admin" => "Admin scope",
+            "sub_admin" => "Sub Admin",
+            "sale_staff" => "Sale staff",
+            "service_staff" => "Service Staff "
+        ]);
         if (! $this->app->routesAreCached()) {
             Passport::routes();
         }
         //
+
     }
 }

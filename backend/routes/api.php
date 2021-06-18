@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\UserController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -34,3 +35,9 @@ Route::get("/start/fail", function (){
 // -- End test API
 
 Route::get("/login", [AuthController::class,'login']);
+
+Route::group(['prefix' => "admin" , "middleware" => ['scopes:admin', 'auth:api']] ,function() {
+    Route::get( "/", function (){
+        return "test_admin";
+     });
+});
