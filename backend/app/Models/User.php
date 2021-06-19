@@ -62,7 +62,8 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
-        'is_customer'
+        'is_customer',
+        "tail_id"
     ];
 
     /**
@@ -87,5 +88,9 @@ class User extends Authenticatable
     //overide function for passport
     public function findForPassport($username) {
         return $this->where('username', $username)->first();
+    }
+
+    public function user_information(){
+        return $this->hasOne(UserInformation::class, "user_id", "id");
     }
 }

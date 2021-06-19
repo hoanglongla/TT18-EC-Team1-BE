@@ -16,6 +16,7 @@ class TailController extends Controller
     public function index()
     {
         //
+        
     }
 
     /**

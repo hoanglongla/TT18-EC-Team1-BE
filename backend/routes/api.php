@@ -1,6 +1,6 @@
 <?php
 
-
+use App\Http\Controllers\Api\TailController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\UserController;
 use App\Models\User;
@@ -38,6 +38,34 @@ Route::get("/login", [AuthController::class,'login']);
 
 Route::group(['prefix' => "admin" , "middleware" => ['scopes:admin', 'auth:api']] ,function() {
     Route::get( "/", function (){
-        return "test_admin";
-     });
+        return \ApiService::success("Admin permission ok");
+    });
+    // -- Tail
+
+    // Add new tail
+    Route::get("/tail", [TailController::class, 'index']);
+    Route::post("/tail",[TailController::class, 'store']);
+    Route::get("/tail/{id}",[TailController::class, 'show'] );
+    Route::post("/tail/{id}/update", [TailController::class, 'update']);
+    Route::get("/tail/{id}/delete", [TailController::class, 'destroy']);
+    // -- End Tail
+
+
+
 });
+
+
+
+Route::group(["prefix"=>"g"],function (){
+    Route::get("/",function (){
+        return \ApiService::success("General API");
+    });
+    Route::get("/user", [UserController::class, 'index']);
+    Route::get("/user/{id}", [UserController::class, 'show']);
+
+    //get all tail info
+
+
+});
+
+
