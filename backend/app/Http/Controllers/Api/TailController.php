@@ -71,7 +71,6 @@ class TailController extends Controller
 
     public function update(Request $request, $id)
     {//
-
         $rules  = [
             "name"=> "required|min:3|max:255"
         ];

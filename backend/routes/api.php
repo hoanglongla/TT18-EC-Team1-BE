@@ -49,11 +49,21 @@ Route::group(['prefix' => "admin", "middleware" => ['scopes:admin', 'auth:api']]
     Route::post("/tail", [TailController::class, 'store']);
     Route::post("/tail/{id}/update", [TailController::class, 'update']);
     Route::get("/tail/{id}/delete", [TailController::class, 'destroy']);
-
     // -- End Tail
+
+    // Add new user
+    Route::get("/user", [UserController::class, 'index']);
+    Route::get("/user/{id}", [UserController::class, 'show']);
+    Route::post("/user", [UserController::class, 'store']);
+    Route::post("/user/{id}/update", [UserController::class, 'update']);
+    Route::get("/user/{id}/delete", [UserController::class, 'destroy']);
+    // -- End new user
+
 
 
 });
+
+
 
 
 Route::group(["prefix" => "g"], function () {
@@ -66,7 +76,6 @@ Route::group(["prefix" => "g"], function () {
 
     Route::get("/tail", [TailController::class, 'index']);
     Route::get("/tail/{id}", [TailController::class, 'show']);
-
 
     //get all tail info
 
