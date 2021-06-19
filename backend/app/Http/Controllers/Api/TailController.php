@@ -68,7 +68,7 @@ class TailController extends Controller
         return \ApiService::success(new TailResource($tail));
     }
 
-    
+
     public function update(Request $request, $id)
     {//
 
@@ -98,7 +98,7 @@ class TailController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Tail  $tail
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($id)
     {

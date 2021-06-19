@@ -20,6 +20,11 @@ class ApiService
         ]);
     }
 
+    /**
+     * @param $error_code
+     * @param string $error_description
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function fail( $error_code, $error_description=""): \Illuminate\Http\JsonResponse
     {
         return \Response::json([

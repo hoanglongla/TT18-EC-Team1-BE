@@ -15331,6 +15331,9 @@
                     /**
          * 
          *
+         * @param $error_code
+         * @param string $error_description
+         * @return \Illuminate\Http\JsonResponse 
          * @static 
          */ 
         public static function fail($error_code, $error_description = '')
