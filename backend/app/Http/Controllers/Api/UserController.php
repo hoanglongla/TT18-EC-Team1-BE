@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Enums\ApiErrorCodeEnum;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\UserCollection;
+use App\Http\Resources\ModelCollection;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -11,6 +12,7 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     //
+
     public function index(Request $request) {
         $users= User::query();
         $per_page = $request->per_page ?? 10;
@@ -18,14 +20,14 @@ class UserController extends Controller
             $users->where("is_customer" , $request->is_customer);
         }
         $users = $users->paginate($per_page);
-        //return UserResource::collection($users);
-        return \ApiService::success(new UserCollection($users));
+        return \ApiService::success(new ModelCollection($users));
     }
-    public function show($id ){
+    public function show($id){
         $user = User::find($id);
         if($user === null){
-            return \ApiService::fail("user_not_exist", 140001, "User không tồn tại");
+            return \ApiService::fail(ApiErrorCodeEnum::USER_NOT_EXIST, "User không tồn tại");
         }
         return \ApiService::success( new UserResource($user));
     }
+
 }

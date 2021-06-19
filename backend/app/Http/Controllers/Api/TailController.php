@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Enums\ApiErrorCodeEnum;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ModelCollection;
+use App\Http\Resources\TailResource;
 use App\Models\Tail;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class TailController extends Controller
 {
@@ -16,7 +21,10 @@ class TailController extends Controller
     public function index()
     {
         //
-        
+        $tails  = Tail::query();
+        $per_page = $request->per_page ?? 10;
+        $tails = $tails->paginate($per_page);
+        return \ApiService::success(new ModelCollection($tails));
     }
 
     /**
@@ -28,6 +36,20 @@ class TailController extends Controller
     public function store(Request $request)
     {
         //
+        $rules  = [
+            "name"=> "required|min:3|max:255"
+        ];
+        $validator = \Validator::make($request->all(), $rules);
+        if($validator->fails()){
+            return \ApiService::fail(ApiErrorCodeEnum::TAIL_FAIL_VALIDATION, $validator->errors()->toArray());
+        }
+        $tail = new Tail();
+        $tail->fill( $request->all());
+        $tail->save();
+        if($tail->id === null){
+            return \ApiService::fail(ApiErrorCodeEnum::TAIL_ADD_FAIL);
+        }
+        return \ApiService::success($tail);
     }
 
     /**
@@ -36,21 +58,40 @@ class TailController extends Controller
      * @param  \App\Models\Tail  $tail
      * @return \Illuminate\Http\Response
      */
-    public function show(Tail $tail)
+    public function show($id)
     {
         //
+        $tail = Tail::find($id);
+        if($tail ===null){
+            return \ApiService::fail(ApiErrorCodeEnum::TAIL_NOT_FOUND);
+        }
+        return \ApiService::success(new TailResource($tail));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Tail  $tail
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Tail $tail)
-    {
-        //
+    
+    public function update(Request $request, $id)
+    {//
+
+        $rules  = [
+            "name"=> "required|min:3|max:255"
+        ];
+        $validator = \Validator::make($request->all(), $rules);
+        if($validator->fails()){
+            return \ApiService::fail(ApiErrorCodeEnum::TAIL_FAIL_VALIDATION, $validator->errors()->toArray());
+        }
+        $tail = Tail::find($id);
+        if($tail === null){
+            return \ApiService::fail(ApiErrorCodeEnum::TAIL_NOT_FOUND, $validator->errors()->toArray());
+        }
+        try{
+            $rslt = $tail->update($request->all());
+            if($rslt) {
+                return \ApiService::success($tail);
+            }
+        }catch (\Exception $ex){
+            return \ApiService::fail(ApiErrorCodeEnum::TAIL_UPDATE_FAIL, $ex);
+        }
+
     }
 
     /**
@@ -59,8 +100,17 @@ class TailController extends Controller
      * @param  \App\Models\Tail  $tail
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tail $tail)
+    public function destroy($id)
     {
         //
+        $tail = Tail::find($id);
+        if($tail===null){
+            return \ApiService::fail(ApiErrorCodeEnum::TAIL_NOT_FOUND);
+        }
+        $tail->delete();
+        if($tail->trashed()){
+            return \ApiService::success("delete success");
+        }
+        return \ApiService::fail(ApiErrorCodeEnum::TAIL_DELETE_FAIL);
     }
 }

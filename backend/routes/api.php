@@ -24,44 +24,49 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 // -- Begin test API
 
-Route::get("/start/success", function (){
+Route::get("/start/success", function () {
     return \ApiService::success("ok");
 });
 
-Route::get("/start/fail", function (){
-    return \ApiService::fail("Ban can dang nhap", 1, []);
+Route::get("/start/fail", function () {
+    return \ApiService::fail(\App\Enums\ApiErrorCodeEnum::USER_NOT_EXIST);
 });
 
 // -- End test API
 
-Route::get("/login", [AuthController::class,'login']);
+Route::get("/login", [AuthController::class, 'login']);
 
-Route::group(['prefix' => "admin" , "middleware" => ['scopes:admin', 'auth:api']] ,function() {
-    Route::get( "/", function (){
+Route::group(['prefix' => "admin", "middleware" => ['scopes:admin', 'auth:api']], function () {
+    Route::get("/", function () {
         return \ApiService::success("Admin permission ok");
     });
+
     // -- Tail
 
     // Add new tail
     Route::get("/tail", [TailController::class, 'index']);
-    Route::post("/tail",[TailController::class, 'store']);
-    Route::get("/tail/{id}",[TailController::class, 'show'] );
+    Route::get("/tail/{id}", [TailController::class, 'show']);
+    Route::post("/tail", [TailController::class, 'store']);
     Route::post("/tail/{id}/update", [TailController::class, 'update']);
     Route::get("/tail/{id}/delete", [TailController::class, 'destroy']);
-    // -- End Tail
 
+    // -- End Tail
 
 
 });
 
 
-
-Route::group(["prefix"=>"g"],function (){
-    Route::get("/",function (){
+Route::group(["prefix" => "g"], function () {
+    Route::get("/", function () {
         return \ApiService::success("General API");
+        return (\App\Enums\ApiErrorCodeEnum::USER_NOT_EXIST);
     });
     Route::get("/user", [UserController::class, 'index']);
     Route::get("/user/{id}", [UserController::class, 'show']);
+
+    Route::get("/tail", [TailController::class, 'index']);
+    Route::get("/tail/{id}", [TailController::class, 'show']);
+
 
     //get all tail info
 
