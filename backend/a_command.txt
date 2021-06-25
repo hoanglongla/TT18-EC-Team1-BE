@@ -1,5 +1,6 @@
 
-1. copy .env.example => .env
+1. Cấu hình host
+*  copy .env.example => .env
 Cấu hình db nếu mysql có thay đổi
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
@@ -7,7 +8,7 @@ DB_PORT=3306
 DB_DATABASE=econail
 DB_PASSWORD=
 
-2. Thêm cấu hình máy chủ ảo vào vào file C:\xampp\apache\conf\extra\httpd-vhosts.conf
+*  Thêm cấu hình máy chủ ảo vào vào file C:\xampp\apache\conf\extra\httpd-vhosts.conf
 cấu hình localhost
 
 <VirtualHost *:80>
@@ -22,12 +23,21 @@ cấu hình localhost
 </VirtualHost>
 Sau đó nhớ reset lại xammp php và db
 
+
+* Add Hostfile
+- Tải https://hostsfileeditor.com/
+- Thêm 127.0.0.1 econail.localhost
+comment có thể bỏ trống
+Nhớ tích checkbox ở dòng vừa Thêm và chọn Save
+
+* thử vào econail.localhost xem đã hoàn thành chưa
+
 2. Cài laravel
 composer install (chưa có thì cài)
 php artisan key:generate
 
 3. Các hàm reset db
-- Chạy khi clone code về hoặc có thay đổi ở server
+- Chạy khi clone code về hoặc có thay đổi ở server (git pull origin master hoặc git pull hoặc git fetch)
 
 
 php artisan migrate:reset --force && php artisan migrate && php artisan db:seed
@@ -52,7 +62,6 @@ php artisan enum:annotate
 
 4. create api
 php artisan make:controller API\CustomController --api --model=CustomModel
-
 php artisan enum:annotate
 
 
@@ -62,5 +71,5 @@ php artisan enum:annotate
 1 - quan ly dai ly
 2 - sale
 3 - nhan vien
-4 - khach hang
+10 - khach hang
 
