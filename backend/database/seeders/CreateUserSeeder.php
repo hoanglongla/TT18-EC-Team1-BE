@@ -22,6 +22,7 @@ class CreateUserSeeder extends Seeder
                 "email" => "admin@wifosoft.com",
                 "password" => \Hash::make('admin'),
                 "role" => 0,
+                "tail_id" => null,
                 "is_customer" => false
             ],
             [
@@ -29,6 +30,7 @@ class CreateUserSeeder extends Seeder
                 "email" => "daily1@wifosoft.com",
                 "password" => \Hash::make('admin'),
                 "role" => 1,
+                "tail_id" =>1,
                 "is_customer" => false
             ],
             [
@@ -36,6 +38,7 @@ class CreateUserSeeder extends Seeder
                 "email" => "daily2@wifosoft.com",
                 "password" => \Hash::make('admin'),
                 "role" => 1,
+                "tail_id" =>2,
                 "is_customer" => false
             ],
         ];
@@ -44,7 +47,6 @@ class CreateUserSeeder extends Seeder
         DB::table("user_informations")->insert([
             [
                 "user_id" =>1,
-                "tail_id" => null,
                 "fullname" => "Trần Minh Đức",
                 "company" => "Wifosoft",
                 "phone" => "0123456789",
@@ -53,7 +55,6 @@ class CreateUserSeeder extends Seeder
             ],
             [
                 "user_id" =>2,
-                "tail_id" => 1,
                 "fullname" => "Quản lý đại lý 1",
                 "company" => "Wifosoft",
                 "phone" => "0123456789",
@@ -62,7 +63,6 @@ class CreateUserSeeder extends Seeder
             ],
             [
                 "user_id" =>3,
-                "tail_id" => 2,
                 "fullname" => "Quản lý đại lý 2",
                 "company" => "Wifosoft",
                 "phone" => "0123456789",

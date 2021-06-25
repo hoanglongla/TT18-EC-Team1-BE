@@ -32,6 +32,13 @@ Route::get("/start/fail", function () {
     return \ApiService::fail(\App\Enums\ApiErrorCodeEnum::USER_NOT_EXIST);
 });
 
+Route::get("/hello_api/{username?}/{password?}", function ($username ="admin", $password="admin") {
+    return \ApiService::success([
+        "username" => $username,
+        "password" => $password
+    ]);
+});
+
 // -- End test API
 
 Route::get("/login", [AuthController::class, 'login']);
@@ -63,7 +70,12 @@ Route::group(['prefix' => "admin", "middleware" => ['scopes:admin', 'auth:api']]
 
 });
 
-
+Route::group(['prefix' => "sub_admin", "middleware" => ["scopes:sub_admin", "auth:api"]] ,function(){
+    Route::get("/", function(){
+        return \ApiService::success("Sub Admin Index");
+    });
+    Route::post('create_customer',  [UserController::class, 'createCustomerUser']);
+});
 
 
 Route::group(["prefix" => "g"], function () {
