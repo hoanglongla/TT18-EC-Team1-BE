@@ -19,6 +19,7 @@ class ApiService
             'data' => $data
         ]);
     }
+    
 
     /**
      * @param $error_code

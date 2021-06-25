@@ -27,7 +27,9 @@ final class ApiErrorCodeEnum extends Enum
     const USER_ADD_FAIL = 130003;
     const USER_UPDATE_FAIL = 130004;
     const USER_DELETE_FAIL = 130005;
-
+    
+    const USER_INCORRECT_REPASSWORD = 130006;
+    const USER_OLD_PASSWORD_INCORRECT = 130007;
     const PERMISSION_DENIED = 130006; 
     
     

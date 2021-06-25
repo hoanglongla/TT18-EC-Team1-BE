@@ -29,7 +29,8 @@ class AuthServiceProvider extends ServiceProvider
             "admin" => "Admin scope",
             "sub_admin" => "Sub Admin",
             "sale_staff" => "Sale staff",
-            "service_staff" => "Service Staff "
+            "service_staff" => "Service Staff",
+            "customer" => "Customer ",
         ]);
         if (! $this->app->routesAreCached()) {
             Passport::routes();

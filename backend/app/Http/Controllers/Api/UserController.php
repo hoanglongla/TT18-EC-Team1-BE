@@ -57,7 +57,7 @@ class UserController extends Controller
 
         $user = new User();
         $user->fill($request->all());
-        $user->password = bcrypt($request->password);
+        $user->password = \Hash::make($request->password);
         $user->save();
         
      
@@ -92,15 +92,14 @@ class UserController extends Controller
         if ($user === null) {
             return \ApiService::fail(ApiErrorCodeEnum::USER_NOT_EXIST);
         }
-        
+
         $current_user = $request->user();
-        if(!($current_user->role === UserRole::ADMIN || $current_user->role < $user->role && $current_user->tail_id  ===  $user->tail_id)) {
-            return \ApiService::fail(ApiErrorCodeEnum::PERMISSION_DENIED);
-        }
+        // if(!($current_user->role === UserRole::ADMIN || $current_user->role <= $user->role && $current_user->tail_id  ===  $user->tail_id)) {
+        //     return \ApiService::fail(ApiErrorCodeEnum::PERMISSION_DENIED);
+        // }
         try {
             
             $user->fill($request->all());
-            $user->password = bcrypt($request->password);
             $result = $user->save();
             if ($result) {
                 return \ApiService::success($user);
@@ -124,26 +123,76 @@ class UserController extends Controller
         return \ApiService::fail(ApiErrorCodeEnum::USER_DELETE_FAIL);
     }
 
-    //Tao tai khoan customer
+    // Global region
+
+
+    // Tạo mới tài khoản customer
     public function createCustomerUser(Request $request)
     {
-        $req_user= $request->user();
         $request->request->add(
             [
-                "tail_id" => $req_user->tail_id,
                 "is_customer" => true, 
                 "role" => UserRole::CUSTOMER
             ]
-        );
-        if($req_user->role !== UserRole::SUB_ADMIN){
-            return \ApiService::fail(ApiErrorCodeEnum::PERMISSION_DENIED);
-        }
+        );   
         return $this->store($request);
         
         //return \ApiService::success($req_user);
     }
 
+
+    // End Glbal region
     
+
+    // Customer region
+
+    // customer thay đổi thông tin tài khoản
+
+    public function updateCustomerInfo(Request $request){
+        $current_user = $request->user();
+        //Userinformation 
+        $user_information = UserInformation::find($current_user->id);
+        $user_information->fill($request->all());
+        $user_information->save();
+        return \ApiService::success(new UserResource(User::find($current_user->id))); 
+    }
+    public function getCurrentCustomerInfo(Request $request){
+        $current_user = $request->user();
+        return \ApiService::success(new UserResource(User::find($current_user->id)));
+    }
+    public function changePassword(Request $request)
+    {
+        $rules = [
+            "old_password" => "required",
+            "password" => "required",
+            "repassword"=> "required",
+        ];
+        
+        $validator = \Validator::make($request->all(), $rules);
+        if($validator->fails()){
+            return \ApiService::fail(ApiErrorCodeEnum::USER_FAIL_VALIDATION, $validator->errors()->toArray());
+        }
+
+        
+        if($request->password != $request->repassword){
+            return \ApiService::fail(ApiErrorCodeEnum::USER_INCORRECT_REPASSWORD);
+        }
+        
+        $current_user = $request->user();
+        $user = User::find($current_user->id);
+        if(\Hash::check($request->old_password, $user->password) !== true){
+            return \ApiService::fail(ApiErrorCodeEnum::USER_OLD_PASSWORD_INCORRECT);
+        }
+        
+        $user->password =  \Hash::make($request->password);
+        $user->save();
+        return \ApiService::success("success");
+    }
+    // End Customer region
+
+
+
+    // Admin region
     public function createSubAdmin(Request $request)
     {
         $req_user = $request->user();
@@ -159,6 +208,9 @@ class UserController extends Controller
         }
         return $this->store($request);
     }
+    // End Admin
+
+    // SubAdmin region
 
     public function createSaleStaff(Request $request)
     {
@@ -201,5 +253,7 @@ class UserController extends Controller
         
         return $this->update($request);
     }
+
+    // End SubAdmin region
 
 }

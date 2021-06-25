@@ -78,6 +78,18 @@ Route::group(['prefix' => "sub_admin", "middleware" => ["scopes:sub_admin", "aut
 });
 
 
+Route::group([
+    "prefix" => "c" , "middleware" => ["scopes:customer" , "auth:api"]
+], function(){
+    Route::get("/" ,function(){
+        return \ApiService::success("Customer Index");
+    }); 
+    
+    Route::post("/user/update", [UserController::class, 'updateCustomerInfo']);
+    Route::get("/user/me", [UserController::class, 'getCurrentCustomerInfo']);
+    Route::post("/user/change_password",  [UserController::class, 'changePassword']);
+});
+
 Route::group(["prefix" => "g"], function () {
     Route::get("/", function () {
         return \ApiService::success("General API");
@@ -88,10 +100,10 @@ Route::group(["prefix" => "g"], function () {
 
     Route::get("/tail", [TailController::class, 'index']);
     Route::get("/tail/{id}", [TailController::class, 'show']);
+    //create customer account
 
-    //get all tail info
-
-
+    Route::post("/create_customer", [Usercontroller::class, 'createCustomerUser']);
+    
 });
 
 
