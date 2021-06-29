@@ -10,6 +10,8 @@ use BenSampo\Enum\Enum;
  * @method static static USER_ADD_FAIL()
  * @method static static USER_UPDATE_FAIL()
  * @method static static USER_DELETE_FAIL()
+ * @method static static USER_INCORRECT_REPASSWORD()
+ * @method static static USER_OLD_PASSWORD_INCORRECT()
  * @method static static PERMISSION_DENIED()
  * @method static static TAIL_FAIL_VALIDATION()
  * @method static static TAIL_ADD_FAIL()

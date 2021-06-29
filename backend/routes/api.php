@@ -65,18 +65,22 @@ Route::group(['prefix' => "admin", "middleware" => ['scopes:admin', 'auth:api']]
     Route::post("/user/{id}/update", [UserController::class, 'update']);
     Route::get("/user/{id}/delete", [UserController::class, 'destroy']);
     // -- End new user
-
-
-
 });
 
 Route::group(['prefix' => "sub_admin", "middleware" => ["scopes:sub_admin", "auth:api"]] ,function(){
     Route::get("/", function(){
         return \ApiService::success("Sub Admin Index");
     });
-    Route::post('create_customer',  [UserController::class, 'createCustomerUser']);
-});
+    Route::post("/customer",  [UserController::class, 'createCustomerUser']);
+    Route::post("/customer/{id}/update", [UserController::class, 'updateCustomer']);
+    
+    Route::post("/staff", [Usercontroller::class, 'createStaff']);
+    
+    //get list staff of tail, can be filter by role
+    Route::get("list_staff" ,[Usercontroller::class, 'getListStaff']);
 
+    
+});
 
 Route::group([
     "prefix" => "c" , "middleware" => ["scopes:customer" , "auth:api"]
@@ -88,9 +92,11 @@ Route::group([
     Route::post("/user/update", [UserController::class, 'updateCustomerInfo']);
     Route::get("/user/me", [UserController::class, 'getCurrentCustomerInfo']);
     Route::post("/user/change_password",  [UserController::class, 'changePassword']);
+
 });
 
-Route::group(["prefix" => "g"], function () {
+Route::group(
+    ["prefix" => "g"], function () {
     Route::get("/", function () {
         return \ApiService::success("General API");
         return (\App\Enums\ApiErrorCodeEnum::USER_NOT_EXIST);
@@ -105,5 +111,3 @@ Route::group(["prefix" => "g"], function () {
     Route::post("/create_customer", [Usercontroller::class, 'createCustomerUser']);
     
 });
-
-
