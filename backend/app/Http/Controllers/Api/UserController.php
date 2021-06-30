@@ -230,7 +230,8 @@ class UserController extends Controller
         $req_user = $request->user();
         $request->request->add(
             [
-                "is_customer" => false
+                "is_customer" => false,
+                "tail_id" => $req_user->tail_id
             ]
         );
 
@@ -243,11 +244,27 @@ class UserController extends Controller
         }
 
         if($req_user->role !== UserRole::SUB_ADMIN
-         || !\ApiService::checkPermissionTailManager($request, $request->role, $request->tail_id) )
+         || !\ApiService::checkPermissionTailManager($request, $request->role, $req_user->tail_id) )
         {
             return \ApiService::fail(ApiErrorCodeEnum::PERMISSION_DENIED);
         }   
         return $this->store($request);
+    }
+    public function deleteStaff(Request $request, $id){
+        $current_user = $request->user();
+        $lower_user = User::find($id);
+        
+        if($lower_user === null){
+            return \ApiService::fail(ApiErrorCodeEnum::USER_NOT_EXIST);
+        }
+
+        if($current_user->role !== UserRole::SUB_ADMIN
+        || !\ApiService::hasTailManagerPermission($request, $lower_user))
+        {
+            return \ApiService::fail(ApiErrorCodeEnum::PERMISSION_DENIED);
+        }   
+        
+        return $this->delete($request, $id);
     }
  
     
@@ -257,6 +274,10 @@ class UserController extends Controller
             "tail_id" => $current_user->tail_id, 
             "is_customer" => false
         ]);
+        if($request->has('role')){
+            //
+
+        }
         return $this->index($request);
         //if(\ApiService::checkPermissionTailManager($request,  ))
     }

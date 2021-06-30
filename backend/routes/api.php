@@ -77,8 +77,8 @@ Route::group(['prefix' => "sub_admin", "middleware" => ["scopes:sub_admin", "aut
     Route::post("/staff", [Usercontroller::class, 'createStaff']);
     
     //get list staff of tail, can be filter by role
-    Route::get("list_staff" ,[Usercontroller::class, 'getListStaff']);
-
+    Route::get("/staff" ,[Usercontroller::class, 'getListStaff']);
+    Route::get("/staff/{id}/delete", [Usercontroller::class, 'deleteStaff']);
     
 });
 

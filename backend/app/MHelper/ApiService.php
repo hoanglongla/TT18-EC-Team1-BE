@@ -16,10 +16,18 @@ class ApiService
     //customer is ok or need to log edit record
     public function checkPermissionTailManager($request,$req_role , $req_tail_id) {
         $current_user = $request->user();
+       
         if($current_user == null || $req_role == null){
             return false;
         }
         return $current_user->role < $req_role && $current_user->tail_id === $req_tail_id; 
+    }
+    public function hasTailManagerPermission($request, $lower_user){
+        $current_user = $request->user();
+        if($lower_user ==null){
+            return false;
+        }
+        return $current_user->role < $lower_user->role && $current_user->tail_id === $lower_user->tail_id ;
     }
     public function success($data): \Illuminate\Http\JsonResponse
     {

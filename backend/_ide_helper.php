@@ -15323,6 +15323,16 @@
          *
          * @static 
          */ 
+        public static function checkPermissionTailManager($request, $req_role, $req_tail_id)
+        {
+                        /** @var \App\MHelper\ApiService $instance */
+                        return $instance->checkPermissionTailManager($request, $req_role, $req_tail_id);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
         public static function success($data)
         {
                         /** @var \App\MHelper\ApiService $instance */
