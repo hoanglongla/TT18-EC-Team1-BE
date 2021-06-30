@@ -72,13 +72,16 @@ Route::group(['prefix' => "sub_admin", "middleware" => ["scopes:sub_admin", "aut
         return \ApiService::success("Sub Admin Index");
     });
     Route::post("/customer",  [UserController::class, 'createCustomerUser']);
-    Route::post("/customer/{id}/update", [UserController::class, 'updateCustomer']);
+
+    Route::post("/customer/{id}/update", [UserController::class, 'updateCustomerInfoFromStaff']);
     
     Route::post("/staff", [Usercontroller::class, 'createStaff']);
     
     //get list staff of tail, can be filter by role
     Route::get("/staff" ,[Usercontroller::class, 'getListStaff']);
+    Route::post("/staff/{id}/update", [UserController::class, 'updateStaff']);
     Route::get("/staff/{id}/delete", [Usercontroller::class, 'deleteStaff']);
+    
     
 });
 

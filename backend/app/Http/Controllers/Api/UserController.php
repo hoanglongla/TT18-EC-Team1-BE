@@ -9,6 +9,7 @@ use App\Http\Resources\UserResource;
 
 use App\Models\User;
 use App\Models\UserInformation;
+use Facade\FlareClient\Api;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -219,10 +220,7 @@ class UserController extends Controller
     // End Admin
 
     // SubAdmin region
-    public function updateCustomer(Request $request, $id){
-        $current_user = $request->user();
-        
-    }
+   
 
 
     public function createStaff(Request $request)
@@ -259,7 +257,7 @@ class UserController extends Controller
         }
 
         if($current_user->role !== UserRole::SUB_ADMIN
-        || !\ApiService::hasTailManagerPermission($request, $lower_user))
+        || !\ApiService::canManageUser($current_user, $lower_user))
         {
             return \ApiService::fail(ApiErrorCodeEnum::PERMISSION_DENIED);
         }   
@@ -291,8 +289,44 @@ class UserController extends Controller
         
         return $this->update($request, $user_id);
     }
+    //cap nhat thong tin staff 
+    public function updateStaff(Request $request, $user_id){ 
+        $current_user = $request->user();
+        $staff_user = User::find($user_id);
+        if($staff_user === null){
+            return \ApiService::fail(ApiErrorCodeEnum::USER_NOT_EXIST);
+        }
+        if(\ApiService::canManageUser($current_user, $staff_user) == false){
+            return \ApiService::fail(ApiErrorCodeEnum::PERMISSION_DENIED);
+        }
+       
+        $user_information = UserInformation::find($staff_user->id);
+        $user_information->fill($request->all());
+        $user_information->save();
 
+        return \ApiService::success(new UserResource(User::find($user_id))); 
+        //return "ab";
+    }
 
+    //cap nhat thong tin customer
+    public function updateCustomerInfoFromStaff(Request $request, $user_id){
+        $current_user = $request->user();
+        $customer= User::find($user_id);
+        if($current_user ===null){
+            return \ApiService::fail(ApiErrorCodeEnum::USER_NOT_EXIST);
+        }
+        if(!\ApiService::canManageUser($current_user, $customer)){
+            return \ApiService::fail(ApiErrorCodeEnum::PERMISSION_DENIED);
+        }
+        
+        $user_information = UserInformation::find($customer->id);
+        $user_information->fill($request->all());
+        $user_information->save();
+
+        return \ApiService::success(new UserResource(User::find($user_id))); 
+
+    }
+    
     // End SubAdmin region
 
 }

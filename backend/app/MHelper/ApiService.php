@@ -3,7 +3,7 @@
 
 namespace App\MHelper;
 use App\Enums\ApiErrorCodeEnum;
-
+use App\Enums\UserRole;
 
 class ApiService
 {
@@ -16,19 +16,25 @@ class ApiService
     //customer is ok or need to log edit record
     public function checkPermissionTailManager($request,$req_role , $req_tail_id) {
         $current_user = $request->user();
+        if ($current_user->role ==UserRole::ADMIN) {return true; }
+
        
-        if($current_user == null || $req_role == null){
+        if($current_user == null || $req_role == null || $current_user->role !== UserRole::SUB_ADMIN){
             return false;
         }
         return $current_user->role < $req_role && $current_user->tail_id === $req_tail_id; 
     }
-    public function hasTailManagerPermission($request, $lower_user){
-        $current_user = $request->user();
-        if($lower_user ==null){
+
+    public function canManageUser($current_user, $lower_user){
+        if ($current_user->role ==UserRole::ADMIN) {return true; }
+        if($lower_user ==null || $current_user->role !== UserRole::SUB_ADMIN){
             return false;
         }
-        return $current_user->role < $lower_user->role && $current_user->tail_id === $lower_user->tail_id ;
+        return ($lower_user->role === UserRole::CUSTOMER &&  $current_user->role < $lower_user->role) || ($lower_user->role != UserRole::CUSTOMER && $current_user->role < $lower_user->role && $current_user->tail_id === $lower_user->tail_id) ;
     }
+    
+    
+
     public function success($data): \Illuminate\Http\JsonResponse
     {
         return \Response::json([
