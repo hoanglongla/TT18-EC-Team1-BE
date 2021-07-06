@@ -65,6 +65,12 @@ Route::group(['prefix' => "admin", "middleware" => ['scopes:admin', 'auth:api']]
     Route::post("/user/{id}/update", [UserController::class, 'update']);
     Route::get("/user/{id}/delete", [UserController::class, 'destroy']);
     // -- End new user
+
+
+    // Category Management
+
+    //Route::get("/")
+    // End category
 });
 
 Route::group(['prefix' => "sub_admin", "middleware" => ["scopes:sub_admin", "auth:api"]] ,function(){

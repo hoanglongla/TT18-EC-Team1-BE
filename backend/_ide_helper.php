@@ -15333,6 +15333,16 @@
          *
          * @static 
          */ 
+        public static function canManageUser($current_user, $lower_user)
+        {
+                        /** @var \App\MHelper\ApiService $instance */
+                        return $instance->canManageUser($current_user, $lower_user);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
         public static function success($data)
         {
                         /** @var \App\MHelper\ApiService $instance */
