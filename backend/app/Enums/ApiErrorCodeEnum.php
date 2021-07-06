@@ -42,6 +42,6 @@ final class ApiErrorCodeEnum extends Enum
     const TAIL_DELETE_FAIL =  140004;
     const TAIL_UPDATE_FAIL = 140005;
 
-
+    const CATEGORY_NOT_EXIST = 150001;
 
 }

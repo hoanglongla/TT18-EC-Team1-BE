@@ -3,9 +3,14 @@
 use App\Http\Controllers\Api\TailController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\ProductCategoryController;
+use App\Http\Controllers\Api\ServiceCategoryController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
+use App\Http\Request\CategoryResource;
+use App\Models\ServiceCategory;
 
 /*
 |--------------------------------------------------------------------------
@@ -69,7 +74,14 @@ Route::group(['prefix' => "admin", "middleware" => ['scopes:admin', 'auth:api']]
 
     // Category Management
 
-    //Route::get("/")
+
+    Route::get("/product_category", [ProductCategoryController::class, 'index']);
+    Route::get("/product_category/{id}", [ProductCategoryController::class, 'show']);
+    
+    Route::get("service_category",  [ServiceCategoryController::class, 'index']);
+    Route::get("service_category/{id}",  [ServiceCategoryController::class, 'show']);
+    
+
     // End category
 });
 

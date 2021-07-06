@@ -1,65 +1,40 @@
 <?php
-
 namespace App\Http\Controllers\API;
+
+use App\Enums\UserRole;
+use App\Enums\ApiErrorCodeEnum;
 
 use App\Http\Controllers\Controller;
 use App\Models\ServiceCategory;
 use Illuminate\Http\Request;
 
+use App\Http\Resources\ModelCollection;
+
+use App\Http\Resources\CategoryResource;
+
+
 class ServiceCategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function index(Request $request)
     {
         //
+        $product_category = ServiceCategory::query();
+        $per_page = $request->per_page ?? 10;
+        if($request->has('parent_category')){
+            $product_category = $product_category->where("parent_category" ,$request->parent_category); 
+        }
+        $product_category = $product_category->paginate($per_page);
+        return \ApiService::success(new ModelCollection($product_category));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\ServiceCategory  $serviceCategory
-     * @return \Illuminate\Http\Response
-     */
-    public function show(ServiceCategory $serviceCategory)
+    public function show($id)
     {
         //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\ServiceCategory  $serviceCategory
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, ServiceCategory $serviceCategory)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\ServiceCategory  $serviceCategory
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(ServiceCategory $serviceCategory)
-    {
-        //
+        $result   = ServiceCategory::find($id);
+        if($result ===null){
+            return \ApiService::fail(ApiErrorCodeEnum::CATEGORY_NOT_EXIST);
+        }        
+        return \ApiService::success(new CategoryResource($result));
     }
 }
