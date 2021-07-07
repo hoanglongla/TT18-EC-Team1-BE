@@ -20,8 +20,9 @@ class ServiceController extends Controller
         $query = Service::query();
         $per_page = $request->per_page ?? 10;
         if ($request->has("services_categories_id")) {
-            $query = $query->where("services_categories_id");
+            $query = $query->where("services_categories_id", $request->services_categories_id);
         }
+        $query = $query->paginate($per_page);
         return \ApiService::success(new ModelCollection($query));
     }
 

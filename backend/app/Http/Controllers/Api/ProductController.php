@@ -19,8 +19,10 @@ class ProductController extends Controller
         $query = Product::query();
         $per_page = $request->per_page ?? 10;
         if ($request->has("products_categories_id")) {
-            $query = $query->where("products_categories_id");
+            $query = $query->where("products_categories_id", $request->products_categories_id);
         }
+        $query = $query->paginate($per_page);
+
         return \ApiService::success(new ModelCollection($query));
     }
 

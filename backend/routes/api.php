@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\ProductController;
+use App\Http\Controllers\API\ServiceController;
 use App\Http\Controllers\Api\TailController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\UserController;
@@ -86,8 +87,9 @@ Route::group(['prefix' => "admin", "middleware" => ['scopes:admin', 'auth:api']]
 
     Route::get("/product", [ProductController::class, "index"]);
     Route::get("/product/{id}", [ProductController::class, "show"]);
-    Route::get("/service", [ProductController::class, "index"]);
-    Route::get("/service/{id}", [ProductController::class, "show"]);
+
+    Route::get("/service", [ServiceController::class, "index"]);
+    Route::get("/service/{id}", [ServiceController::class, "show"]);
 
     // End category
 });
