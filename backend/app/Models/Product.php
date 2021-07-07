@@ -50,7 +50,7 @@ class Product extends Model
 
     public $table = "products";
     protected $fillable  = [
-        "name", "price" ,"price_discount", "description", "stock", "amount", "unit", "products_categories_id"
+        "name", "price" ,"price_discount", "description", "picture", "stock", "amount", "unit", "products_categories_id"
     ];
 
 }

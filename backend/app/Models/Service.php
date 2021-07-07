@@ -50,7 +50,7 @@ class Service extends Model
 
     public $table = "services";
     protected $fillable = [
-        "name", "price", "price_discount", "description", "time_estimate", "can_book_online", "sex_type", "services_categories_id" //'services_categories_id'
+        "name", "price", "price_discount", "description", "picture", "time_estimate", "can_book_online", "sex_type", "services_categories_id" //'services_categories_id'
     ];
 }
 

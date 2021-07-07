@@ -93,6 +93,9 @@ Route::group(['prefix' => "admin", "middleware" => ['scopes:admin', 'auth:api']]
 
     Route::get("/product", [ProductController::class, "index"]);
     Route::get("/product/{id}", [ProductController::class, "show"]);
+    Route::post("/product", [ProductController::class, "store"]);
+    Route::post("/product/{id}/update",  [ProductController::class, "update"]);
+    Route::get("/product/{id}/delete",  [ProductController::class, "delete"]);
 
     Route::get("/service", [ServiceController::class, "index"]);
     Route::get("/service/{id}", [ServiceController::class, "show"]);
