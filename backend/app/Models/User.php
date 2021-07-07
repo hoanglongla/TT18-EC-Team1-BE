@@ -47,6 +47,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|User withTrashed()
  * @method static \Illuminate\Database\Query\Builder|User withoutTrashed()
  * @mixin \Eloquent
+ * @property int|null $tail_id
+ * @property-read \App\Models\UserInformation|null $user_information
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereTailId($value)
  */
 class User extends Authenticatable
 {

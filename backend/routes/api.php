@@ -78,18 +78,24 @@ Route::group(['prefix' => "admin", "middleware" => ['scopes:admin', 'auth:api']]
 
 
     Route::get("/product_category", [ProductCategoryController::class, 'index']);
+    Route::post("/product_category", [ProductCategoryController::class, 'store']);
     Route::get("/product_category/{id}", [ProductCategoryController::class, 'show']);
+    Route::post("/product_category/{id}/update", [ProductCategoryController::class, 'update']);
+    Route::get("/product_category/{id}/delete", [ProductCategoryController::class, 'delete']);
 
 
     Route::get("service_category", [ServiceCategoryController::class, 'index']);
     Route::get("service_category/{id}", [ServiceCategoryController::class, 'show']);
-
 
     Route::get("/product", [ProductController::class, "index"]);
     Route::get("/product/{id}", [ProductController::class, "show"]);
 
     Route::get("/service", [ServiceController::class, "index"]);
     Route::get("/service/{id}", [ServiceController::class, "show"]);
+
+
+
+
 
     // End category
 });
