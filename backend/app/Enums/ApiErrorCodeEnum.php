@@ -29,13 +29,13 @@ final class ApiErrorCodeEnum extends Enum
     const USER_ADD_FAIL = 130003;
     const USER_UPDATE_FAIL = 130004;
     const USER_DELETE_FAIL = 130005;
-    
+
     const USER_INCORRECT_REPASSWORD = 130006;
     const USER_OLD_PASSWORD_INCORRECT = 130007;
-    const PERMISSION_DENIED = 130008; 
-    
-    
-    
+    const PERMISSION_DENIED = 130008;
+
+
+
     const TAIL_FAIL_VALIDATION  = 140001;
     const TAIL_ADD_FAIL  = 140002;
     const TAIL_NOT_FOUND = 140003;
@@ -43,5 +43,8 @@ final class ApiErrorCodeEnum extends Enum
     const TAIL_UPDATE_FAIL = 140005;
 
     const CATEGORY_NOT_EXIST = 150001;
+
+
+    const PRODUCT_NOT_EXIST = 160001;
 
 }

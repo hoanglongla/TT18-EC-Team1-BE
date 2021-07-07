@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\ProductController;
 use App\Http\Controllers\Api\TailController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\UserController;
@@ -37,7 +38,7 @@ Route::get("/start/fail", function () {
     return \ApiService::fail(\App\Enums\ApiErrorCodeEnum::USER_NOT_EXIST);
 });
 
-Route::get("/hello_api/{username?}/{password?}", function ($username ="admin", $password="admin") {
+Route::get("/hello_api/{username?}/{password?}", function ($username = "admin", $password = "admin") {
     return \ApiService::success([
         "username" => $username,
         "password" => $password
@@ -77,42 +78,48 @@ Route::group(['prefix' => "admin", "middleware" => ['scopes:admin', 'auth:api']]
 
     Route::get("/product_category", [ProductCategoryController::class, 'index']);
     Route::get("/product_category/{id}", [ProductCategoryController::class, 'show']);
-    
-    Route::get("service_category",  [ServiceCategoryController::class, 'index']);
-    Route::get("service_category/{id}",  [ServiceCategoryController::class, 'show']);
-    
+
+
+    Route::get("service_category", [ServiceCategoryController::class, 'index']);
+    Route::get("service_category/{id}", [ServiceCategoryController::class, 'show']);
+
+
+    Route::get("/product", [ProductController::class, "index"]);
+    Route::get("/product/{id}", [ProductController::class, "show"]);
+    Route::get("/service", [ProductController::class, "index"]);
+    Route::get("/service/{id}", [ProductController::class, "show"]);
 
     // End category
 });
 
-Route::group(['prefix' => "sub_admin", "middleware" => ["scopes:sub_admin", "auth:api"]] ,function(){
-    Route::get("/", function(){
+Route::group(['prefix' => "sub_admin", "middleware" => ["scopes:sub_admin", "auth:api"]], function () {
+    Route::get("/", function () {
         return \ApiService::success("Sub Admin Index");
     });
-    Route::post("/customer",  [UserController::class, 'createCustomerUser']);
+    Route::post("/customer", [UserController::class, 'createCustomerUser']);
 
     Route::post("/customer/{id}/update", [UserController::class, 'updateCustomerInfoFromStaff']);
-    
+
     Route::post("/staff", [Usercontroller::class, 'createStaff']);
-    
+
     //get list staff of tail, can be filter by role
-    Route::get("/staff" ,[Usercontroller::class, 'getListStaff']);
+    Route::get("/staff", [Usercontroller::class, 'getListStaff']);
     Route::post("/staff/{id}/update", [UserController::class, 'updateStaff']);
     Route::get("/staff/{id}/delete", [Usercontroller::class, 'deleteStaff']);
-    
-    
+
+
 });
 
 Route::group([
-    "prefix" => "c" , "middleware" => ["scopes:customer" , "auth:api"]
-], function(){
-    Route::get("/" ,function(){
+    "prefix" => "c", "middleware" => ["scopes:customer", "auth:api"]
+], function () {
+    Route::get("/", function () {
         return \ApiService::success("Customer Index");
-    }); 
-    
+    });
+
     Route::post("/user/update", [UserController::class, 'updateCustomerInfo']);
     Route::get("/user/me", [UserController::class, 'getCurrentCustomerInfo']);
-    Route::post("/user/change_password",  [UserController::class, 'changePassword']);
+    Route::post("/user/change_password", [UserController::class, 'changePassword']);
 
 });
 
@@ -130,5 +137,13 @@ Route::group(
     //create customer account
 
     Route::post("/create_customer", [Usercontroller::class, 'createCustomerUser']);
-    
+
+
+    Route::get("/product_category", [ProductCategoryController::class, 'index']);
+    Route::get("/product_category/{id}", [ProductCategoryController::class, 'show']);
+
+    Route::get("service_category", [ServiceCategoryController::class, 'index']);
+    Route::get("service_category/{id}", [ServiceCategoryController::class, 'show']);
+
+
 });
