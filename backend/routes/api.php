@@ -46,6 +46,7 @@ Route::get("/hello_api/{username?}/{password?}", function ($username = "admin", 
     ]);
 });
 
+Route::get("/", function () {return "Hello";});
 // -- End test API
 
 Route::get("/login", [AuthController::class, 'login']);
@@ -158,6 +159,12 @@ Route::group(
 
     Route::get("service_category", [ServiceCategoryController::class, 'index']);
     Route::get("service_category/{id}", [ServiceCategoryController::class, 'show']);
+
+    Route::get("/product", [ProductController::class, "index"]);
+    Route::get("/product/{id}", [ProductController::class, "show"]);
+
+    Route::get("/service", [ServiceController::class, "index"]);
+    Route::get("/service/{id}", [ServiceController::class, "show"]);
 
 
 });
