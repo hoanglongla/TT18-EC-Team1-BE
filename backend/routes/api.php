@@ -136,6 +136,7 @@ Route::group([
     Route::get("/user/me", [UserController::class, 'getCurrentCustomerInfo']);
     Route::post("/user/change_password", [UserController::class, 'changePassword']);
 
+
 });
 
 Route::group(
@@ -165,6 +166,7 @@ Route::group(
 
     Route::get("/service", [ServiceController::class, "index"]);
     Route::get("/service/{id}", [ServiceController::class, "show"]);
+
 
 
 });

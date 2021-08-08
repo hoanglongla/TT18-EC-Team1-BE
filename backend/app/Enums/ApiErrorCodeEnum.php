@@ -78,6 +78,12 @@ final class ApiErrorCodeEnum extends Enum
     const ORDER_UPDATE_FAIL =190005;
 
 
+    const PAYMENT_NOT_EXIST = 200001;
+    const PAYMENT_FAIL_VALIDATION = 200002;
+    const PAYMENT_ADD_FAIL = 200003;
+    const PAYMENT_DELETE_FAIL = 200004;
+    const PAYMENT_UPDATE_FAIL =200005;
+
 
 
 }
