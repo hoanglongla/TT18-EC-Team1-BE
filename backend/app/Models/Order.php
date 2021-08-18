@@ -13,4 +13,8 @@ class Order extends Model
     protected $fillable =[
         'user_id', 'tail_id', 'staff_process_id', 'note', 'status', 'is_paid', 'payment_id' ,'delivery_status'
     ];
+
+    public function order_products() {
+        return $this->hasMany("App\Models\OrderProduct", "order_id", "id");
+    }
 }

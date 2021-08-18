@@ -11,6 +11,8 @@ class OrderProduct extends Model
     use HasFactory , softDeletes;
     public $table ="order_products";
     protected $fillable  = [
-        "order_id", "product_id", "product_price" ,"note"
+        "order_id", "product_id", "product_price" , "amount", "note"
     ];
+
+
 }

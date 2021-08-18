@@ -17,6 +17,7 @@ class CreateOrderProductTable extends Migration
             $table->id();
             $table->integer("order_id")->nullable(false);
             $table->integer("product_id")->nullable(false);
+            $table->integer("amount")->default(1);
             $table->integer("product_price")->nullable(false);
             $table->text("note")->nullable(true);
             $table->softDeletes();

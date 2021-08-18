@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Product;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class OrderProductResource extends JsonResource
@@ -19,11 +20,11 @@ class OrderProductResource extends JsonResource
             "order_id" => $this->order_id,
             "product_id"=> $this->product_id,
             "product_price" => $this->product_price,
+            "amount" => $this->amount,
             "note"=> $this->note,
             "deleted_at" => $this->deleted_at,
             "created_at" => $this->created_at,
-            "updated_at"=> $this->updated_at
-
+            "updated_at"=> $this->updated_at,
         ];
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\API\ProductController;
 use App\Http\Controllers\API\ServiceController;
 use App\Http\Controllers\Api\TailController;
@@ -7,6 +8,7 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\ProductCategoryController;
 use App\Http\Controllers\Api\ServiceCategoryController;
+use App\Models\Order;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -104,6 +106,14 @@ Route::group(['prefix' => "admin", "middleware" => ['scopes:admin', 'auth:api']]
     Route::post("/service/{id}/update", [ServiceController::class, "update"]);
     Route::get( "/service/{id}/delete", [ServiceController::class, "delete"]);
 
+
+
+    Route::get("/order", [OrderController::class, "index"]);
+    Route::get("/order/{id}", [OrderController::class, "show"]);
+    Route::post("/order", [OrderController::class, "store"]);
+    Route::post("/order/{id}/update", [OrderController::class, "update"]);
+    Route::get( "/order/{id}/delete", [OrderController::class, "delete"]);
+
     // End category
 });
 
@@ -123,6 +133,13 @@ Route::group(['prefix' => "sub_admin", "middleware" => ["scopes:sub_admin", "aut
     Route::get("/staff/{id}/delete", [Usercontroller::class, 'deleteStaff']);
 
 
+    Route::get("/order", [OrderController::class, "index"]);
+    Route::get("/order/{id}", [OrderController::class, "show"]);
+    Route::post("/order", [OrderController::class, "store"]);
+    Route::post("/order/{id}/update", [OrderController::class, "update"]);
+    Route::get( "/order/{id}/delete", [OrderController::class, "delete"]);
+
+
 });
 
 Route::group([
@@ -135,6 +152,13 @@ Route::group([
     Route::post("/user/update", [UserController::class, 'updateCustomerInfo']);
     Route::get("/user/me", [UserController::class, 'getCurrentCustomerInfo']);
     Route::post("/user/change_password", [UserController::class, 'changePassword']);
+
+
+    Route::get("/order", [OrderController::class, "index"]);
+    Route::get("/order/{id}", [OrderController::class, "show"]);
+    Route::post("/order", [OrderController::class, "store"]);
+    Route::post("/order/{id}/update", [OrderController::class, "update"]);
+    Route::get( "/order/{id}/delete", [OrderController::class, "delete"]);
 
 
 });

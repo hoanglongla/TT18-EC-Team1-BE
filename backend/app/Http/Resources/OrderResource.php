@@ -24,6 +24,7 @@ class OrderResource extends JsonResource
             "is_paid" => $this->is_paid,
             "payment_id"=> $this->payment_id,
             "delivery_status"=> $this->delivery_status,
+            "order_product" => $this->order_products,
             "created_at" => $this->created_at,
             "updated_at" => $this->updated_at,
             "deleted_at" => $this->deleted_at
