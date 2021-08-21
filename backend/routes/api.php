@@ -123,6 +123,13 @@ Route::group(['prefix' => "sub_admin", "middleware" => ["scopes:sub_admin", "aut
     });
     Route::post("/customer", [UserController::class, 'createCustomerUser']);
 
+    Route::get("/user", [UserController::class, 'index']);
+    Route::get("/user/{id}", [UserController::class, 'show']);
+    Route::post("/user", [UserController::class, 'store']);
+    Route::post("/user/{id}/update", [UserController::class, 'update']);
+    Route::get("/user/{id}/delete", [UserController::class, 'destroy']);
+
+
     Route::post("/customer/{id}/update", [UserController::class, 'updateCustomerInfoFromStaff']);
 
     Route::post("/staff", [Usercontroller::class, 'createStaff']);
