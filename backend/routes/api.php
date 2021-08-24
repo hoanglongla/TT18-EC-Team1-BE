@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\BookServiceController;
 use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\API\ProductController;
 use App\Http\Controllers\API\ServiceController;
@@ -114,6 +115,13 @@ Route::group(['prefix' => "admin", "middleware" => ['scopes:admin', 'auth:api']]
     Route::post("/order/{id}/update", [OrderController::class, "update"]);
     Route::get( "/order/{id}/delete", [OrderController::class, "delete"]);
 
+
+
+    Route::get("/book_service", [BookServiceController::class, "index"]);
+    Route::get("/book_service/{id}", [BookServiceController::class, "show"]);
+    Route::post("/book_service", [BookServiceController::class, "store"]);
+    Route::post("/book_service/{id}/update", [BookServiceController::class, "update"]);
+    Route::get( "/book_service/{id}/delete", [BookServiceController::class, "delete"]);
     // End category
 });
 
@@ -147,6 +155,13 @@ Route::group(['prefix' => "sub_admin", "middleware" => ["scopes:sub_admin", "aut
     Route::get( "/order/{id}/delete", [OrderController::class, "delete"]);
 
 
+    Route::get("/book_service", [BookServiceController::class, "index"]);
+    Route::get("/book_service/{id}", [BookServiceController::class, "show"]);
+    Route::post("/book_service", [BookServiceController::class, "store"]);
+    Route::post("/book_service/{id}/update", [BookServiceController::class, "update"]);
+    Route::get( "/book_service/{id}/delete", [BookServiceController::class, "delete"]);
+
+
 });
 
 Route::group([
@@ -166,6 +181,12 @@ Route::group([
     Route::post("/order", [OrderController::class, "store"]);
     Route::post("/order/{id}/update", [OrderController::class, "update"]);
     Route::get( "/order/{id}/delete", [OrderController::class, "delete"]);
+
+    Route::get("/book_service", [BookServiceController::class, "index"]);
+    Route::get("/book_service/{id}", [BookServiceController::class, "show"]);
+    Route::post("/book_service", [BookServiceController::class, "store"]);
+    Route::post("/book_service/{id}/update", [BookServiceController::class, "update"]);
+    Route::get( "/book_service/{id}/delete", [BookServiceController::class, "delete"]);
 
 
 });
