@@ -19,6 +19,7 @@ class CreateOrdersTable extends Migration
             $table->integer("tail_id")->nullable(true);
             $table->integer("staff_process_id")->nullable(true);
             $table->text("note")->nullable(true);
+            $table->text("address")->nullable(true);
             $table->integer("status")->nullable(false)->default(0); //created
             $table->boolean("is_paid")->nullable(false)->default(false);
             $table->integer("payment_id")->nullable(true);
