@@ -164,8 +164,6 @@ Route::group(['prefix' => "sub_admin", "middleware" => ["scopes:sub_admin", "aut
 
     Route::get("/reportByTail", [ReportController::class, "reportByTail"]);
 
-
-
 });
 
 Route::group([
@@ -217,6 +215,7 @@ Route::group(
 
     Route::get("/product", [ProductController::class, "index"]);
     Route::get("/product/{id}", [ProductController::class, "show"]);
+    Route::get("/product_recommend", [ProductController::class, "product_recommend"]);
 
     Route::get("/service", [ServiceController::class, "index"]);
     Route::get("/service/{id}", [ServiceController::class, "show"]);

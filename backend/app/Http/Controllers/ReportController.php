@@ -39,6 +39,8 @@ class ReportController extends Controller
             "total_count_book" => 0,
             "number_order_paid" => 0,
             "number_service_paid" => 0,
+            "service_deliveried" => 0,
+            "order_deliveried" => 0,
         ];
 
         foreach ($orders_of_tail as $order) {
@@ -49,6 +51,7 @@ class ReportController extends Controller
                 $data["total_revenue_order"] += $order_product["amount"] * $order_product["product_price"];
             }
             $data["number_order_paid"] += ($order["is_paid"] === true) ? 1 : 0;
+            $data["order_deliveried"] += ($order["delivery_status"] === 1) ? 1 : 0;
 
         }
 
@@ -57,6 +60,8 @@ class ReportController extends Controller
             $book_service = Service::where("id", $book_service["service_id"])->first();
             $data["total_revenue_service"] += $book_service["price"];
             $data["number_service_paid"] += ($book_service["is_paid"] === true) ? 1 : 0;
+            $data["service_deliveried"] += ($book_service["delivery_status"] === 1) ? 1 : 0;
+
         }
 
         return \ApiService::success($data);
