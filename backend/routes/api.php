@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\ProductCategoryController;
 use App\Http\Controllers\Api\ServiceCategoryController;
+use App\Http\Controllers\ReportController;
 use App\Models\Order;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -161,6 +162,9 @@ Route::group(['prefix' => "sub_admin", "middleware" => ["scopes:sub_admin", "aut
     Route::post("/book_service/{id}/update", [BookServiceController::class, "update"]);
     Route::get( "/book_service/{id}/delete", [BookServiceController::class, "delete"]);
 
+    Route::get("/reportByTail", [ReportController::class, "reportByTail"]);
+
+
 
 });
 
@@ -188,7 +192,6 @@ Route::group([
     Route::post("/book_service/{id}/update", [BookServiceController::class, "update"]);
     Route::get( "/book_service/{id}/delete", [BookServiceController::class, "delete"]);
 
-
 });
 
 Route::group(
@@ -206,7 +209,6 @@ Route::group(
 
     Route::post("/create_customer", [Usercontroller::class, 'createCustomerUser']);
 
-
     Route::get("/product_category", [ProductCategoryController::class, 'index']);
     Route::get("/product_category/{id}", [ProductCategoryController::class, 'show']);
 
@@ -218,7 +220,5 @@ Route::group(
 
     Route::get("/service", [ServiceController::class, "index"]);
     Route::get("/service/{id}", [ServiceController::class, "show"]);
-
-
 
 });
