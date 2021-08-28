@@ -124,6 +124,8 @@ Route::group(['prefix' => "admin", "middleware" => ['scopes:admin', 'auth:api']]
     Route::post("/book_service/{id}/update", [BookServiceController::class, "update"]);
     Route::get( "/book_service/{id}/delete", [BookServiceController::class, "delete"]);
     // End category
+    Route::get("/reportByTail", [ReportController::class, "reportByTail"]);
+
 });
 
 Route::group(['prefix' => "sub_admin", "middleware" => ["scopes:sub_admin", "auth:api"]], function () {
