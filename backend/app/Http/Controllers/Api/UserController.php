@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\API;
 use App\Enums\UserRole;
 use App\Enums\ApiErrorCodeEnum;
 use App\Http\Controllers\Controller;
@@ -51,10 +51,10 @@ class UserController extends Controller
             "email" => "required|email",
             "password" => "required",
             "is_customer" => "required",
-            "fullname" => "required", 
+            "fullname" => "required",
             "phone" => "required"
         ];
-        
+
         $validator = \Validator::make($request->all(), $rules);
         if ($validator->fails()) {
             return \ApiService::fail(ApiErrorCodeEnum::USER_FAIL_VALIDATION, $validator->errors()->toArray());
@@ -66,14 +66,14 @@ class UserController extends Controller
         $user->fill($request->all());
         $user->password = \Hash::make($request->password);
         $user->save();
-        
-     
-        
+
+
+
         if ($user->id === null) {
             return \ApiService::fail(ApiErrorCodeEnum::USER_ADD_FAIL);
         }
-        $user_information = new UserInformation(); 
-        $user_information->user_id = $user->id; 
+        $user_information = new UserInformation();
+        $user_information->user_id = $user->id;
         $user_information->fullname = $request->fullname;
         $user_information->phone = $request->phone;
         $user_information->save();
@@ -88,14 +88,14 @@ class UserController extends Controller
     {
         $rules = [
         ];
-        
+
         $validator = \Validator::make($request->all(), $rules);
         if ($validator->fails()) {
             return \ApiService::fail(ApiErrorCodeEnum::USER_FAIL_VALIDATION, $validator->errors()->toArray());
         }
-        
+
         $user = User::find($id);
-        
+
         if ($user === null) {
             return \ApiService::fail(ApiErrorCodeEnum::USER_NOT_EXIST);
         }
@@ -105,7 +105,7 @@ class UserController extends Controller
         //     return \ApiService::fail(ApiErrorCodeEnum::PERMISSION_DENIED);
         // }
         try {
-            
+
             $user->fill($request->all());
             $result = $user->save();
             if ($result) {
@@ -138,32 +138,32 @@ class UserController extends Controller
     {
         $request->request->add(
             [
-                "is_customer" => true, 
+                "is_customer" => true,
                 "role" => UserRole::CUSTOMER
             ]
-        );   
+        );
         return $this->store($request);
-        
+
         //return \ApiService::success($req_user);
     }
 
 
     // End Glbal region
-    
+
 
     // Customer region
 
-    
+
 
     // customer thay đổi thông tin tài khoản
 
     public function updateCustomerInfo(Request $request){
         $current_user = $request->user();
-        //Userinformation 
+        //Userinformation
         $user_information = UserInformation::find($current_user->id);
         $user_information->fill($request->all());
         $user_information->save();
-        return \ApiService::success(new UserResource(User::find($current_user->id))); 
+        return \ApiService::success(new UserResource(User::find($current_user->id)));
     }
     public function getCurrentCustomerInfo(Request $request){
         $current_user = $request->user();
@@ -176,23 +176,23 @@ class UserController extends Controller
             "password" => "required",
             "repassword"=> "required",
         ];
-        
+
         $validator = \Validator::make($request->all(), $rules);
         if($validator->fails()){
             return \ApiService::fail(ApiErrorCodeEnum::USER_FAIL_VALIDATION, $validator->errors()->toArray());
         }
 
-        
+
         if($request->password != $request->repassword){
             return \ApiService::fail(ApiErrorCodeEnum::USER_INCORRECT_REPASSWORD);
         }
-        
+
         $current_user = $request->user();
         $user = User::find($current_user->id);
         if(\Hash::check($request->old_password, $user->password) !== true){
             return \ApiService::fail(ApiErrorCodeEnum::USER_OLD_PASSWORD_INCORRECT);
         }
-        
+
         $user->password =  \Hash::make($request->password);
         $user->save();
         return \ApiService::success("success");
@@ -208,7 +208,7 @@ class UserController extends Controller
         $request->request->add(
             [
                 "tail_id" => $req_user->tail_id,
-                "is_customer" => false, 
+                "is_customer" => false,
                 "role" => UserRole::SUB_ADMIN
             ]
         );
@@ -220,7 +220,7 @@ class UserController extends Controller
     // End Admin
 
     // SubAdmin region
-   
+
 
 
     public function createStaff(Request $request)
@@ -245,13 +245,13 @@ class UserController extends Controller
          || !\ApiService::checkPermissionTailManager($request, $request->role, $req_user->tail_id) )
         {
             return \ApiService::fail(ApiErrorCodeEnum::PERMISSION_DENIED);
-        }   
+        }
         return $this->store($request);
     }
     public function deleteStaff(Request $request, $id){
         $current_user = $request->user();
         $lower_user = User::find($id);
-        
+
         if($lower_user === null){
             return \ApiService::fail(ApiErrorCodeEnum::USER_NOT_EXIST);
         }
@@ -260,16 +260,16 @@ class UserController extends Controller
         || !\ApiService::canManageUser($current_user, $lower_user))
         {
             return \ApiService::fail(ApiErrorCodeEnum::PERMISSION_DENIED);
-        }   
-        
+        }
+
         return $this->delete($request, $id);
     }
- 
-    
+
+
     public function getListStaff(Request $request){
         $current_user = $request->user();
         $request->request->add([
-            "tail_id" => $current_user->tail_id, 
+            "tail_id" => $current_user->tail_id,
             "is_customer" => false
         ]);
         if($request->has('role')){
@@ -286,11 +286,11 @@ class UserController extends Controller
         if($req_user->role !== UserRole::SUB_ADMIN){
             return \ApiService::fail(ApiErrorCodeEnum::PERMISSION_DENIED);
         }
-        
+
         return $this->update($request, $user_id);
     }
-    //cap nhat thong tin staff 
-    public function updateStaff(Request $request, $user_id){ 
+    //cap nhat thong tin staff
+    public function updateStaff(Request $request, $user_id){
         $current_user = $request->user();
         $staff_user = User::find($user_id);
         if($staff_user === null){
@@ -299,12 +299,12 @@ class UserController extends Controller
         if(\ApiService::canManageUser($current_user, $staff_user) == false){
             return \ApiService::fail(ApiErrorCodeEnum::PERMISSION_DENIED);
         }
-       
+
         $user_information = UserInformation::find($staff_user->id);
         $user_information->fill($request->all());
         $user_information->save();
 
-        return \ApiService::success(new UserResource(User::find($user_id))); 
+        return \ApiService::success(new UserResource(User::find($user_id)));
         //return "ab";
     }
 
@@ -318,15 +318,15 @@ class UserController extends Controller
         if(!\ApiService::canManageUser($current_user, $customer)){
             return \ApiService::fail(ApiErrorCodeEnum::PERMISSION_DENIED);
         }
-        
+
         $user_information = UserInformation::find($customer->id);
         $user_information->fill($request->all());
         $user_information->save();
 
-        return \ApiService::success(new UserResource(User::find($user_id))); 
+        return \ApiService::success(new UserResource(User::find($user_id)));
 
     }
-    
+
     // End SubAdmin region
 
 }

@@ -1,14 +1,14 @@
 <?php
 
-use App\Http\Controllers\Api\BookServiceController;
-use App\Http\Controllers\Api\OrderController;
+use App\Http\Controllers\API\BookServiceController;
+use App\Http\Controllers\API\OrderController;
 use App\Http\Controllers\API\ProductController;
 use App\Http\Controllers\API\ServiceController;
-use App\Http\Controllers\Api\TailController;
-use App\Http\Controllers\Api\AuthController;
-use App\Http\Controllers\Api\UserController;
-use App\Http\Controllers\Api\ProductCategoryController;
-use App\Http\Controllers\Api\ServiceCategoryController;
+use App\Http\Controllers\API\TailController;
+use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\UserController;
+use App\Http\Controllers\API\ProductCategoryController;
+use App\Http\Controllers\API\ServiceCategoryController;
 use App\Http\Controllers\ReportController;
 use App\Models\Order;
 use App\Models\User;
