@@ -18,7 +18,8 @@ class DatabaseSeeder extends Seeder
             CreateUserSeeder::class,
             CreateCategorySeeder::class,
             ProductSeeder::class,
-            ServiceSeeder::class
+            ServiceSeeder::class,
+            TailSeeder::class
         ]);
     }
 }
