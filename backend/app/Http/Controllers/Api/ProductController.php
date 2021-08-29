@@ -6,9 +6,13 @@ use App\Enums\ApiErrorCodeEnum;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ModelCollection;
 use App\Http\Resources\ProductResource;
+use App\Models\Category;
 use App\Models\Order;
 use App\Models\OrderProduct;
 use App\Models\Product;
+use App\Models\ProductCategory;
+use App\Models\Service;
+use App\Models\ServiceCategory;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
@@ -42,7 +46,37 @@ class ProductController extends Controller
         }
         return \ApiService::success(new  ProductResource($product));
     }
+    public  function search(Request $request){
+        if(!$request->has('keyword')){
+            return \ApiService::fail(ApiErrorCodeEnum::PRODUCT_FAIL_VALIDATION);
+        }
+        else {
+            $keyword = $request->keyword;
 
+            $product = Product::query()
+                ->where('name', 'LIKE', "%{$keyword}%")
+                ->get()->toArray();
+
+            $product_category = ProductCategory::query()
+                ->where('name', 'LIKE', "%{$keyword}%")
+                ->get()->toArray();
+
+
+            $service_category = ServiceCategory::query()
+                ->where('name', 'LIKE', "%{$keyword}%")
+                ->get()->toArray();
+
+            $service = Service::query()
+                ->where('name', 'LIKE', "%{$keyword}%")
+                ->get()->toArray();
+            return \ApiService::success([
+                "product" => $product,
+                "product_category" => $product_category,
+                "service" => $service,
+                "service_category" => $service_category
+            ]);
+        }
+    }
     public function product_recommend(Request $request)
     {
         /*
